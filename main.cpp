@@ -3,6 +3,8 @@
 
 #define ISS_3DMODEL	"ISSComplete1.mv1"
 
+#define DR	0.1
+
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
 	int ISS;
 	
@@ -15,36 +17,36 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		printf("error:\n\tcan't load 3D model.");
 		return -1;
 	}
-	MV1SetScale(ISS, VGet(1.0, 2.0, 2.0));
+	MV1SetPosition(ISS, VGet(0.0, 0.0, 0.0));
+	MV1SetScale(ISS, VGet(20.0, 20.0, 2.0));
 	
 	SetDrawScreen(DX_SCREEN_BACK);
 	
 	VECTOR pos;
 	pos.x = 0.0;
 	pos.y = 0.0;
-	pos.z = 0.0;
+	pos.z = 300.0;
 	
 	SetCameraPositionAndTarget_UpVecY(pos, VGet(0.0, 0.0, 0.0));
 	
 	while(ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0){
 		
 		ClearDrawScreen();
-		clsDx();
 		
-		if(CheckHitKey(KEY_INPUT_UP)) pos.y += 5.0;
-		if(CheckHitKey(KEY_INPUT_DOWN)) pos.y -= 5.0;
-		if(CheckHitKey(KEY_INPUT_LEFT)) pos.x -= 5.0;
-		if(CheckHitKey(KEY_INPUT_RIGHT)) pos.x += 5.0;
-		if(CheckHitKey(KEY_INPUT_SPACE)) pos.z += 5.0;
+		if(CheckHitKey(KEY_INPUT_UP)) pos.y += DR;
+		if(CheckHitKey(KEY_INPUT_DOWN)) pos.y -= DR;
+		if(CheckHitKey(KEY_INPUT_LEFT)) pos.x -= DR;
+		if(CheckHitKey(KEY_INPUT_RIGHT)) pos.x += DR;
+		if(CheckHitKey(KEY_INPUT_SPACE)) pos.z -= DR;
 		
+		SetCameraPositionAndTarget_UpVecY(pos, VGet(pos.x, pos.y, pos.z-100));
 		MV1SetPosition(ISS, VGet(0.0, 0.0, 0.0));
+		MV1DrawModel(ISS);
 		
-		SetCameraPositionAndAngle(pos, 0.0, 0.0, 0.0);
+		clsDx();
 		printfDx("x=%f y=%f z=%f", pos.x, pos.y, pos.z);
 		
-		MV1DrawModel(ISS);
 		ScreenFlip();
-		
 	}
 	
 	DxLib_End();
