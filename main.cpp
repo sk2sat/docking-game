@@ -38,6 +38,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		if(CheckHitKey(KEY_INPUT_LEFT)) pos.x -= DR;
 		if(CheckHitKey(KEY_INPUT_RIGHT)) pos.x += DR;
 		if(CheckHitKey(KEY_INPUT_SPACE)) pos.z -= DR;
+		if(CheckHitKey(KEY_INPUT_RETURN)) pos.z += DR;
 		
 		SetCameraPositionAndTarget_UpVecY(pos, VGet(pos.x, pos.y, pos.z-100));
 		MV1SetPosition(ISS, VGet(0.0, 0.0, 0.0));
