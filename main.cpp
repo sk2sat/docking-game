@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 #include <DxLib.h>
 
-#define DEBUG
+//#define DEBUG
 
 #define ISS_3DMODEL	"ISSComplete1.mv1"
 
@@ -12,6 +13,10 @@
 #define SCRNY	480
 
 #define CONS_XSIZ	128
+
+#define DOCKING_DISTANCE	0.5
+
+VECTOR d_port = VGet(-6.0, 0.0, 45.0);
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
 	int ISS;
@@ -39,7 +44,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	SetCameraPositionAndTarget_UpVecY(pos, VGet(0.0, 0.0, 0.0));
 	
 	while(ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0){
-		
+		clsDx();
 		ClearDrawScreen();
 
 		VECTOR tmp;
@@ -54,12 +59,19 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		if(CheckHitKey(KEY_INPUT_SPACE))	tmp.z -= DV;
 		if(CheckHitKey(KEY_INPUT_RETURN))	tmp.z += DV;
 #ifndef DEBUG
+		vel = tmp;
 		pos.x	+= vel.x * DT;
 		pos.y	+= vel.y * DT;
 		pos.z	+= vel.z * DT;
 #else
 		pos = tmp;
 #endif
+
+		if(fabsf(pos.x - d_port.x) <= DOCKING_DISTANCE){
+		if(fabsf(pos.y - d_port.y) <= DOCKING_DISTANCE){
+		if(fabsf(pos.z - d_port.z) <= DOCKING_DISTANCE){
+			printfDx("conglatulations!");
+		}}}
 
 		SetCameraPositionAndTarget_UpVecY(pos, VGet(pos.x, pos.y, pos.z-100));
 		MV1SetPosition(ISS, VGet(0.0, 0.0, 0.0));
@@ -70,7 +82,6 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		DrawLine((SCRNX-CONS_XSIZ)/2, 0, (SCRNX-CONS_XSIZ)/2, SCRNY, GetColor(0xff,0xff,0xff));
 		DrawFormatString(SCRNX-CONS_XSIZ, 0, GetColor(0,0,0), "aaa");
 		
-		clsDx();
 		printfDx("x=%f y=%f z=%f", pos.x, pos.y, pos.z);
 		
 		ScreenFlip();
