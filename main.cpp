@@ -9,8 +9,6 @@
 
 //#define DEBUG
 
-#define ISS_3DMODEL	"ISSComplete1.mv1"
-
 #define DV	0.1
 #define DT	0.01
 
@@ -30,6 +28,7 @@ VECTOR d_port = VGet(-6.0, 0.0, 45.0);
 int SCENE_MODE = MENU_MODE;
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
+try {
 	if(DxLib_Init() < 0) return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 	
@@ -37,7 +36,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	Game *game = new Game();
 	Config *cfg = new Config();
 	
-	while(ProcessMessage()==0){
+	while(ProcessMessage()==0 && CheckHitKey(KEY_INPUT_ESCAPE)==0){
 		switch(SCENE_MODE){
 		case MENU_MODE:
 			menu->update();
@@ -66,33 +65,21 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	
 	DxLib_End();
 	return 0;
+}catch(...){
+	printf("exception!!!!!");
+	return -1;
 }
 
+}
+
+/*
 namespace motomoto {
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
-	int ISS;
-	
-	if(DxLib_Init() < 0){
-		return -1;
-	}
-	
-	ISS = MV1LoadModel(ISS_3DMODEL);
-	if(ISS == -1){
-		printf("error:\n\tcan't load 3D model.");
-		return -1;
-	}
-	MV1SetPosition(ISS, VGet(0.0, 0.0, 0.0));
-	MV1SetScale(ISS, VGet(20.0, 20.0, 2.0));
-	
-	SetDrawScreen(DX_SCREEN_BACK);
-	
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){	
 	VECTOR pos, vel;
 	pos.x = 0.0;
 	pos.y = -150.0;
 	pos.z = 300.0;
 	vel = VGet(0.0, 0.0, 0.0);
-	
-	SetCameraPositionAndTarget_UpVecY(pos, VGet(0.0, 0.0, 0.0));
 	
 	while(ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0){
 		clsDx();
@@ -144,3 +131,4 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 }
 
 };
+*/

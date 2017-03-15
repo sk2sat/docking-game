@@ -4,4 +4,12 @@ Config::Config(){
 	
 }
 
+void Config::update(){
+	
+}
+
+void Config::draw(){
+	
+}
+
 

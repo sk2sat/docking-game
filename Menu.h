@@ -7,6 +7,9 @@ class Menu : public Scene {
 public:
 	Menu();
 	~Menu();
+	
+	void update(){}
+	void draw() {}
 };
 
 #endif

@@ -7,6 +7,9 @@ class Config : public Scene {
 public:
 	Config();
 	~Config();
+
+	void update();
+	void draw();
 };
 
 #endif
