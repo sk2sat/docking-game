@@ -6,6 +6,7 @@
 #define BUTTON_YSIZ	(SCRNY/7)
 
 Menu::Menu(){
+	scene_trans_flg = 0;
 	now_button = 0;
 }
 
@@ -16,11 +17,31 @@ Menu::~Menu(){
 void Menu::update(){
 	if(CheckHitKey(KEY_INPUT_UP))	now_button--;
 	if(CheckHitKey(KEY_INPUT_DOWN))	now_button++;
+
+	if(CheckHitKey(KEY_INPUT_RETURN)){
+		scene_trans_flg = TRUE;
+		switch(now_button){
+		case 0:
+			SCENE_MODE = GAME_MODE;
+			break;
+		case 1:
+			SCENE_MODE = CONFIG_MODE;
+			break;
+		default:
+			break;
+		}
+	}
+
 	if(now_button<0)		now_button++;
 	if(now_button>=BUTTON_NUM)	now_button--;
 }
 
 void Menu::draw(){
+	if(scene_trans_flg){
+		ClearDrawScreen();
+		return;
+	}
+	SetBackgroundColor(0x00,0x00,0xcc);
 	DrawBox(0,0,SCRNX,SCRNY,GetColor(0x00,0x00,0xcc), TRUE);
 	
 	int xc = SCRNX/2;

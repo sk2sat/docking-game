@@ -15,11 +15,6 @@
 int SCRNX	= 640;
 int SCRNY	= 480;
 
-#define MENU_MODE	0
-#define GAME_MODE	1
-#define CONFIG_MODE	2
-#define ENDING		3
-
 #define CONS_XSIZ	128
 #define DOCKING_DISTANCE	1.0
 

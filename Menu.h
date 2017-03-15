@@ -11,6 +11,7 @@ public:
 	void update();
 	void draw();
 private:
+	int scene_trans_flg;
 	int now_button;
 };
 
