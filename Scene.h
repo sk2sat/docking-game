@@ -3,6 +3,8 @@
 
 #include "DxLib.h"
 
+extern int SCRNX,SCRNY;
+
 class Scene {
 public:
 	virtual void update()	{};

@@ -12,8 +12,8 @@
 #define DV	0.1
 #define DT	0.01
 
-#define SCRNX	640
-#define SCRNY	480
+int SCRNX	= 640;
+int SCRNY	= 480;
 
 #define MENU_MODE	0
 #define GAME_MODE	1

@@ -8,8 +8,10 @@ public:
 	Menu();
 	~Menu();
 	
-	void update(){}
-	void draw() {}
+	void update();
+	void draw();
+private:
+	int now_button;
 };
 
 #endif
