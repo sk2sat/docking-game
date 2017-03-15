@@ -1,7 +1,7 @@
-MINGW = wine ~/MinGW/bin/
+#MINGW = ~/MinGW/bin/
 CXX = $(MINGW)g++.exe
 
-DXLIB  = ~/DxLib/4_5_2
+DXLIB  = C:/DxLib/4_5_2
 DXLIB_CXXFLAGS = -DDX_GCC_COMPILE -DDX_NON_INLINE_ASM
 DXLIB_LDFLAGS  = -lDxLib -lDxUseCLib -lDxDrawFunc -ljpeg -lpng -lzlib \
 -ltiff -ltheora_static -lvorbis_static -lvorbisfile_static -logg_static \
@@ -26,6 +26,6 @@ $(TARGET):$(OBJS)
 	$(CXX) -static-libgcc -o $@ $^ -lstdc++ $(LDFLAGS) -lgcc
 
 run:$(TARGET)
-	wine $(TARGET)
+	$(TARGET)
 
 
