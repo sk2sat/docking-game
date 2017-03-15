@@ -14,7 +14,7 @@ CXXFLAGS = $(INCDIR) $(DXLIB_CXXFLAGS)
 LDFLAGS  = $(LIBDIR) $(DXLIB_LDFLAGS)
 
 TARGET = test.exe
-OBJS = main.o
+OBJS = main.o Scene.o Menu.o Game.o Config.o
 
 %.o:%.cpp
 	$(CXX) $(CXXFLAGS) -c $<
@@ -23,7 +23,7 @@ default:
 	make $(TARGET)
 
 $(TARGET):$(OBJS)
-	$(CXX) -static-libgcc -static-libstdc++ -o $@ $^ -lstdc++ $(LDFLAGS) -lgcc
+	$(CXX) -static-libgcc -o $@ $^ -lstdc++ $(LDFLAGS) -lgcc
 
 run:$(TARGET)
 	wine $(TARGET)

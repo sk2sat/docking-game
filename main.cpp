@@ -2,6 +2,11 @@
 #include <math.h>
 #include <DxLib.h>
 
+#include "Scene.h"
+#include "Menu.h"
+#include "Game.h"
+#include "Config.h"
+
 //#define DEBUG
 
 #define ISS_3DMODEL	"ISSComplete1.mv1"
@@ -15,37 +20,48 @@
 #define MENU_MODE	0
 #define GAME_MODE	1
 #define CONFIG_MODE	2
+#define ENDING		3
 
 #define CONS_XSIZ	128
 #define DOCKING_DISTANCE	1.0
 
 VECTOR d_port = VGet(-6.0, 0.0, 45.0);
 
-int SCENE_MODE;
-
-class Scene {
-public:
-	Scene();
-	~Scene();
-	void Draw();
-};
+int SCENE_MODE = MENU_MODE;
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
 	if(DxLib_Init() < 0) return -1;
 	SetDrawScreen(DX_SCREEN_BACK);
 	
+	Menu *menu = new Menu();
+	Game *game = new Game();
+	Config *cfg = new Config();
+	
 	while(ProcessMessage()==0){
 		switch(SCENE_MODE){
 		case MENU_MODE:
+			menu->update();
+			menu->draw();
 			break;
 		case GAME_MODE:
+			game->update();
+			game->draw();
 			break;
 		case CONFIG_MODE:
+			cfg->update();
+			cfg->draw();
 			break;
+		case ENDING:
+			game->ending();
+			DxLib_End();
+			delete menu, game, cfg;
+			return 0;
 		default:
 			return -1;
 			break;
 		}
+		
+		ScreenFlip();
 	}
 	
 	DxLib_End();
