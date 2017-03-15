@@ -12,12 +12,47 @@
 #define SCRNX	640
 #define SCRNY	480
 
-#define CONS_XSIZ	128
+#define MENU_MODE	0
+#define GAME_MODE	1
+#define CONFIG_MODE	2
 
-#define DOCKING_DISTANCE	0.5
+#define CONS_XSIZ	128
+#define DOCKING_DISTANCE	1.0
 
 VECTOR d_port = VGet(-6.0, 0.0, 45.0);
 
+int SCENE_MODE;
+
+class Scene {
+public:
+	Scene();
+	~Scene();
+	void Draw();
+};
+
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
+	if(DxLib_Init() < 0) return -1;
+	SetDrawScreen(DX_SCREEN_BACK);
+	
+	while(ProcessMessage()==0){
+		switch(SCENE_MODE){
+		case MENU_MODE:
+			break;
+		case GAME_MODE:
+			break;
+		case CONFIG_MODE:
+			break;
+		default:
+			return -1;
+			break;
+		}
+	}
+	
+	DxLib_End();
+	return 0;
+}
+
+namespace motomoto {
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
 	int ISS;
 	
@@ -92,4 +127,4 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 	return 0;
 }
 
-
+};
