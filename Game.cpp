@@ -31,12 +31,12 @@ void Game::update(){
 
 	if(end_flg) return;
 
-	if(CheckHitKey(KEY_INPUT_UP)){		tmp.y -= DV; remain_fuel--;}
-	if(CheckHitKey(KEY_INPUT_DOWN)){	tmp.y += DV; remain_fuel--;}
-	if(CheckHitKey(KEY_INPUT_LEFT)){	tmp.x -= DV; remain_fuel--;}
-	if(CheckHitKey(KEY_INPUT_RIGHT)){	tmp.x += DV; remain_fuel--;}
-	if(CheckHitKey(KEY_INPUT_SPACE)){	tmp.z -= DV; remain_fuel--;}
-	if(CheckHitKey(KEY_INPUT_RETURN)){	tmp.z += DV; remain_fuel--;}
+	if(CheckHitKey(KEY_INPUT_UP)){		tmp.y -= DV; remain_fuel-=DF;}
+	if(CheckHitKey(KEY_INPUT_DOWN)){	tmp.y += DV; remain_fuel-=DF;}
+	if(CheckHitKey(KEY_INPUT_LEFT)){	tmp.x -= DV; remain_fuel-=DF;}
+	if(CheckHitKey(KEY_INPUT_RIGHT)){	tmp.x += DV; remain_fuel-=DF;}
+	if(CheckHitKey(KEY_INPUT_SPACE)){	tmp.z -= DV; remain_fuel-=DF;}
+	if(CheckHitKey(KEY_INPUT_RETURN)){	tmp.z += DV; remain_fuel-=DF;}
 
 	cvel = tmp;
 	cpos.x	+= cvel.x * DT;

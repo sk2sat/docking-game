@@ -10,6 +10,7 @@
 #define CONS_XSIZ	128
 #define DT	0.01
 #define DV	0.1
+#define DF	0.05
 
 class Game : public Scene {
 public:
@@ -22,7 +23,7 @@ public:
 private:
 	int end_flg, clear_flg;
 	int ISS;
-	int remain_fuel;
+	float remain_fuel;
 	VECTOR cpos, pos, cvel;
 	Console *cons;
 };
