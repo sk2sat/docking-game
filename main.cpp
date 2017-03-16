@@ -32,6 +32,9 @@ try {
 	Config *cfg = new Config();
 	
 	while(ProcessMessage()==0 && CheckHitKey(KEY_INPUT_ESCAPE)==0){
+//		clsDx();
+		ClearDrawScreen();
+
 		switch(SCENE_MODE){
 		case MENU_MODE:
 			menu->update();

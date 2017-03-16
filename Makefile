@@ -14,7 +14,7 @@ CXXFLAGS = $(INCDIR) $(DXLIB_CXXFLAGS)
 LDFLAGS  = $(LIBDIR) $(DXLIB_LDFLAGS)
 
 TARGET = test.exe
-OBJS = main.o Scene.o Menu.o Game.o Config.o
+OBJS = main.o Scene.o Menu.o Game.o Console.o Config.o
 
 %.o:%.cpp
 	$(CXX) $(CXXFLAGS) -c $<

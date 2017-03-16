@@ -5,6 +5,10 @@
 
 #define ISS_3DMODEL     "ISSComplete1.mv1"
 
+#define CONS_XSIZ	128
+#define DT	0.01
+#define DV	0.1
+
 class Game : public Scene {
 public:
 	Game();
@@ -15,7 +19,7 @@ public:
 	
 private:
 	int ISS;
-	VECTOR campos, pos;
+	VECTOR cpos, pos, cvel;
 };
 
 #endif
