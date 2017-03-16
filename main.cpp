@@ -18,8 +18,6 @@ int SCRNY	= 480;
 #define CONS_XSIZ	128
 #define DOCKING_DISTANCE	1.0
 
-VECTOR d_port = VGet(-6.0, 0.0, 45.0);
-
 int SCENE_MODE = MENU_MODE;
 
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){

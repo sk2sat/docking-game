@@ -16,7 +16,9 @@ public:
 	void draw();
 private:
 	std::vector<std::string> strtbl;
+	std::vector<unsigned int> coltbl;
 	int nline, line_max;
+	int x0,y0,x1,y1;
 };
 
 #endif
