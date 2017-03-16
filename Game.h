@@ -20,8 +20,9 @@ public:
 	void ending();
 	
 private:
-	int clear_flg;
+	int end_flg, clear_flg;
 	int ISS;
+	int remain_fuel;
 	VECTOR cpos, pos, cvel;
 	Console *cons;
 };
